@@ -1,13 +1,21 @@
 import { Link } from "react-router";
 import { Github } from "lucide-react";
+import supabase from "../../utils/supabase";
 
 export default function LoginSocial() {
   const handleGoogleLogin = () => {
     console.log("Google login");
   };
 
-  const handleGithubLogin = () => {
-    console.log("Github login");
+  const handleGithubLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "github",
+      });
+      if (error) throw error;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleKakaoLogin = () => {
