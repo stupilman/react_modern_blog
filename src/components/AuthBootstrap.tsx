@@ -14,6 +14,7 @@ export default function AuthBootstrap() {
       if (event === "SIGNED_OUT") clearAuth();
     });
     return () => sub.subscription.unsubscribe();
-  }, [hydrateFromAuth]);
+  }, [hydrateFromAuth, clearAuth]);
+
   return null;
 }
